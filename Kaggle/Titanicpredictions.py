@@ -85,6 +85,8 @@ forest = forest.fit(train_data[0::,1::],train_data[0::,0])
 
 # Take the same decision trees and run it on the test data
 output = forest.predict(test_data)
+#needs to be integer for kaggle to work
+output = output.astype(int)
 
 ##TURN BACK INTO CSV FILE
 
@@ -105,4 +107,4 @@ for row in zip(PassengerId, Survived):
 # otherwise you might find that it is empty.
 csv_out.close()
 
-##work out how to change survived to no decimal places, work out where the 418th survival value went!!Add another parameter to test
+# work out where the 418th survival value went!!Add another parameter to test
