@@ -89,7 +89,7 @@ output = forest.predict(test_data)
 ##TURN BACK INTO CSV FILE
 
 Survived = output
-PassengerId = range(1,420)
+PassengerId = range(892,1310)
 
 # open a file for writing.
 csv_out = open('C:/Users/Dan/Downloads/dancsv.csv', 'wb')
@@ -105,3 +105,4 @@ for row in zip(PassengerId, Survived):
 # otherwise you might find that it is empty.
 csv_out.close()
 
+##work out how to change survived to no decimal places, work out where the 418th survival value went!!Add another parameter to test
