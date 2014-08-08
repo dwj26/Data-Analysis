@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Fri Aug 08 13:58:35 2014
-Code that takes a training data file, cleans it, and users it to predict from a cleaned test file
+
 @author: Dan
 """
 
@@ -85,4 +85,23 @@ forest = forest.fit(train_data[0::,1::],train_data[0::,0])
 
 # Take the same decision trees and run it on the test data
 output = forest.predict(test_data)
-print output
+
+##TURN BACK INTO CSV FILE
+
+Survived = output
+PassengerId = range(1,420)
+
+# open a file for writing.
+csv_out = open('C:/Users/Dan/Downloads/dancsv.csv', 'wb')
+
+# create the csv writer object.
+mywriter = csv.writer(csv_out)
+
+# writerow - one row of data at a time.
+for row in zip(PassengerId, Survived):
+    mywriter.writerow(row)
+
+# always make sure that you close the file.
+# otherwise you might find that it is empty.
+csv_out.close()
+
