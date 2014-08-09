@@ -7,7 +7,7 @@ Created on Fri Aug 08 13:58:35 2014
 
 import pandas as pd
 import numpy as np
-
+import csv
 # For .read_csv, always use header=0 when you know row 0 is the header row
 df = pd.read_csv('C:/Users/Dan/Downloads/train.csv', header=0)
 #Create new gender column where male is mapped to 1 and female to 0
@@ -85,14 +85,15 @@ forest = forest.fit(train_data[0::,1::],train_data[0::,0])
 
 # Take the same decision trees and run it on the test data
 output = forest.predict(test_data)
-#needs to be integer for kaggle to work
+#need to be integers for kaggle to work
 output = output.astype(int)
+#need to convert array to a list to add the titles back in
+output = output.tolist()
+output = ['Survived']+output
 
-##TURN BACK INTO CSV FILE
-
-Survived = output
-PassengerId = range(892,1310)
-
+##TURN BACK INTO CSV FILE 
+survived = output
+passengerId = ['PassengerId'] + range(892,1311)
 # open a file for writing.
 csv_out = open('C:/Users/Dan/Downloads/dancsv.csv', 'wb')
 
@@ -100,11 +101,11 @@ csv_out = open('C:/Users/Dan/Downloads/dancsv.csv', 'wb')
 mywriter = csv.writer(csv_out)
 
 # writerow - one row of data at a time.
-for row in zip(PassengerId, Survived):
+for row in zip(passengerId, survived):
     mywriter.writerow(row)
 
 # always make sure that you close the file.
 # otherwise you might find that it is empty.
 csv_out.close()
 
-# work out where the 418th survival value went!!Add another parameter to test
+##where is the 418th person!
